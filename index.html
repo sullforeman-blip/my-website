@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Learning Hub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #0d1117;
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            background: #161b22;
+            padding: 20px;
+        }
+
+        nav h2 {
+            color: #00bfff;
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+
+        nav a:hover {
+            color: #00bfff;
+        }
+
+        .hero {
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #0d1117, #003b5c);
+        }
+
+        .hero h1 {
+            font-size: 50px;
+        }
+
+        .box {
+            background: #161b22;
+            width: 80%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        button {
+            background: #008cff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00bfff;
+        }
+
+        input {
+            padding: 12px;
+            width: 250px;
+            border-radius: 6px;
+            border: none;
+            margin: 5px;
+        }
+
+        .code {
+            background: #000;
+            color: #00ff88;
+            text-align: left;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: monospace;
+        }
+
+        #answer {
+            font-size: 20px;
+            color: #00ff88;
+        }
+
+        footer {
+            background: #161b22;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <h2>🐍 PYTHON HUB</h2>
+
+    <br>
+
+    <a href="#home">Home</a>
+    <a href="#learn">Learn</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#quiz">Quiz</a>
+</nav>
+
+
+<!-- HOME -->
+
+<div class="hero" id="home">
+
+    <h1>🐍 Python Learning Hub</h1>
+
+    <p>Learn Python by practicing real code.</p>
+
+    <button onclick="welcome()">
+        Start Learning
+    </button>
+
+    <p id="welcome"></p>
+
+</div>
+
+
+<!-- LEARN -->
+
+<section id="learn">
+
+    <div class="box">
+
+        <h2>💻 Python Example</h2>
+
+        <p>Here is a simple Python program:</p>
+
+        <div class="code">
+            name = input("Enter your name: ")<br>
+            print("Hello", name)
+        </div>
+
+        <p>
+            This program asks the user for their name
+            and then displays a greeting.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- CALCULATOR -->
+
+<section id="calculator">
+
+    <div class="box">
+
+        <h2>🧮 Calculator</h2>
+
+        <input
+            id="num1"
+            type="number"
+            placeholder="First number"
+        >
+
+        <input
+            id="num2"
+            type="number"
+            placeholder="Second number"
+        >
+
+        <br>
+
+        <button onclick="add()">+</button>
+
+        <button onclick="subtract()">−</button>
+
+        <button onclick="multiply()">×</button>
+
+        <button onclick="divide()">÷</button>
+
+        <h2 id="calcResult">Answer: --</h2>
+
+    </div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section id="quiz">
+
+    <div class="box">
+
+        <h2>🧠 Python Quiz</h2>
+
+        <p>What function is used to display text in Python?</p>
+
+        <button onclick="checkAnswer('input')">
+            input()
+        </button>
+
+        <button onclick="checkAnswer('print')">
+            print()
+        </button>
+
+        <button onclick="checkAnswer('display')">
+            display()
+        </button>
+
+        <p id="answer"></p>
+
+        <h3>
+            Score: <span id="score">0</span>
+        </h3>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>🐍 Python Learning Hub © 2026</p>
+
+    <p>Made with HTML, CSS and JavaScript</p>
+
+</footer>
+
+
+<script>
+
+    // WELCOME BUTTON
+
+    function welcome() {
+
+        document.getElementById("welcome").innerHTML =
+            "🔥 Let's start learning Python!";
+
+    }
+
+
+    // CALCULATOR
+
+    function getNumbers() {
+
+        let a = Number(
+            document.getElementById("num1").value
+        );
+
+        let b = Number(
+            document.getElementById("num2").value
+        );
+
+        return [a, b];
+
+    }
+
+
+    function add() {
+
+        let numbers = getNumbers();
+
+        let answer = numbers[0] + numbers[1];
+
+        document.getElementById("calcResult").innerHTML =
+            "Answer: " + answer;
+
+    }
+
+
+    function subtract() {
+
+        let numbers = getNumbers();
+
+        let answer = numbers[0] - numbers[1];
+
+        document.getElementById("calcResult").innerHTML =
+            "Answer: " + answer;
+
+    }
+
+
+    function multiply() {
+
+        let numbers = getNumbers();
+
+        let answer = numbers[0] * numbers[1];
+
+        document.getElementById("calcResult").innerHTML =
+            "Answer: " + answer;
+
+    }
+
+
+    function divide() {
+
+        let numbers = getNumbers();
+
+        if (numbers[1] == 0) {
+
+            document.getElementById("calcResult").innerHTML =
+                "Cannot divide by zero!";
+
+        } else {
+
+            let answer = numbers[0] / numbers[1];
+
+            document.getElementById("calcResult").innerHTML =
+                "Answer: " + answer;
+
+        }
+
+    }
+
+
+    // QUIZ
+
+    let score = 0;
+
+
+    function checkAnswer(choice) {
+
+        if (choice == "print") {
+
+            score++;
+
+            document.getElementById("answer").innerHTML =
+                "✅ Correct!";
+
+        } else {
+
+            document.getElementById("answer").innerHTML =
+                "❌ Incorrect. The answer is print().";
+
+        }
+
+        document.getElementById("score").innerHTML =
+            score;
+
+    }
+
+</script>
+
+</body>
+</html>
